@@ -31,8 +31,6 @@
     
     NSArray *_pathPolylines;
     
-    BOOL fisrtload;
-    
 }
 @end
 
@@ -72,7 +70,7 @@
 
     _mapView.showsUserLocation=YES;
     
-    [_mapView setUserTrackingMode:MAUserTrackingModeFollow animated:NO];
+    [_mapView setUserTrackingMode:MAUserTrackingModeFollow animated:YES];
     
 }
 
@@ -358,13 +356,6 @@
     NSLog(@"userLocation = %@",userLocation.location);
     _currentLocation=[userLocation.location copy];
     
-    
-    if (_currentLocation && !fisrtload) {
-        CGPoint currentPoint=[_mapView convertCoordinate:_currentLocation.coordinate toPointToView:_mapView];
-        [_mapView setZoomLevel:15 atPivot:currentPoint animated:NO];
-        
-        fisrtload=YES;
-    }
 }
 
 -(CLLocationCoordinate2D *)coodinatesForString:(NSString *)string coordinateCount:(NSUInteger *)coordinateCount parseToken:(NSString *)token
